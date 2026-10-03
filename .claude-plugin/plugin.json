@@ -1,0 +1,43 @@
+{
+  "name": "usage-band",
+  "version": "0.3.0",
+  "description": "Usage band above the prompt: limits, context, tokens, speed, cost, tools, churn, model, effort, folder, git, memory and timing",
+  "author": {
+    "name": "ersinkoc"
+  },
+  "homepage": "https://github.com/ersinkoc/claude-usage-band-cli",
+  "repository": "https://github.com/ersinkoc/claude-usage-band-cli",
+  "license": "MIT",
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "show5h": { "type": "boolean", "title": "Usage band: 5-hour limit", "description": "Pill with the 5-hour window's usage, elapsed marker and reset countdown", "default": true },
+    "show7d": { "type": "boolean", "title": "Usage band: 7-day limit", "description": "Pill with the 7-day window's usage, elapsed marker and reset countdown", "default": true },
+    "showSpendLimit": { "type": "boolean", "title": "Usage band: spend limit", "description": "Pill for a gateway's spend limit, when the account reports one", "default": true },
+    "showPace": { "type": "boolean", "title": "Usage band: pace projection", "description": "On limit pills, where usage lands at reset if the current pace holds", "default": true },
+    "showContext": { "type": "boolean", "title": "Usage band: context window", "description": "Pill with the context window's fill", "default": true },
+    "showInput": { "type": "boolean", "title": "Usage band: input tokens", "description": "Uncached input + cache writes", "default": true },
+    "showOutput": { "type": "boolean", "title": "Usage band: output tokens", "description": "Tokens the model generated", "default": true },
+    "showCacheRead": { "type": "boolean", "title": "Usage band: cache read tokens", "description": "Input tokens served from the prompt cache", "default": true },
+    "showCacheHit": { "type": "boolean", "title": "Usage band: cache hit rate", "description": "On the cache pill, the share of input served from the cache", "default": true },
+    "showSpeed": { "type": "boolean", "title": "Usage band: output speed", "description": "Tokens per second of the last response (hover for the average)", "default": true },
+    "showCost": { "type": "boolean", "title": "Usage band: session cost", "description": "Session cost at API list prices", "default": true },
+    "showBurnRate": { "type": "boolean", "title": "Usage band: cost per hour", "description": "On the cost pill, the session's cost per hour so far", "default": true },
+    "showTools": { "type": "boolean", "title": "Usage band: tool calls", "description": "Pill with the number of tool calls (hover for the top tools)", "default": true },
+    "showChurn": { "type": "boolean", "title": "Usage band: lines changed", "description": "Lines added and removed by Edit, MultiEdit and Write", "default": true },
+    "showModel": { "type": "boolean", "title": "Usage band: model", "description": "Pill with the model that answered last", "default": true },
+    "showEffort": { "type": "boolean", "title": "Usage band: thinking effort", "description": "The thinking effort of the last request (low … max)", "default": true },
+    "showFolder": { "type": "boolean", "title": "Usage band: folder", "description": "The working directory's name (hover for the full path)", "default": true },
+    "showGit": { "type": "boolean", "title": "Usage band: git branch", "description": "The current branch and how many files changed", "default": true },
+    "showMemory": { "type": "boolean", "title": "Usage band: machine memory", "description": "This machine's memory in use", "default": true },
+    "showDuration": { "type": "boolean", "title": "Usage band: session duration", "description": "Pill with how long the session has run", "default": true },
+    "showTurns": { "type": "boolean", "title": "Usage band: turns", "description": "Pill with the number of turns and the last turn's length", "default": true },
+    "showInTerminal": { "type": "boolean", "title": "Usage band: show in the terminal", "description": "Off to show the band only in the desktop app (the status line already covers the terminal)", "default": true },
+    "terminalStyle": { "type": "string", "title": "Usage band: terminal style", "description": "powerline: colored segments like a powerline status line; plain: colored text", "default": "powerline", "options": ["powerline", "plain"] },
+    "nerdFont": { "type": "boolean", "title": "Usage band: Nerd Font icons", "description": "Icons and rounded powerline caps from a Nerd Font; off for text labels", "default": true },
+    "layout": { "type": "string", "title": "Usage band: layout", "description": "full: icons and bars; compact: text only", "default": "full", "options": ["full", "compact"] },
+    "warnAt": { "type": "number", "title": "Usage band: yellow from %", "description": "Bars turn yellow at this percent", "default": 70, "min": 1, "max": 100 },
+    "hotAt": { "type": "number", "title": "Usage band: red from %", "description": "Bars turn red at this percent", "default": 90, "min": 1, "max": 100 },
+    "alerts": { "type": "boolean", "title": "Usage band: limit alerts", "description": "A toast when a limit crosses the yellow or red threshold", "default": true },
+    "refreshSeconds": { "type": "number", "title": "Usage band: refresh every (s)", "description": "How often countdowns and totals refresh", "default": 30, "min": 10, "max": 600 }
+  }
+}
