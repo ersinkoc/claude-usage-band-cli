@@ -103,6 +103,24 @@ If `CLAUDE_CODE_PLUGIN_DIRS` already has folders, append this one with the platf
 
 > The plugin is named `usage-band`. Don't load it together with another `usage-band` plugin: they'd claim the same command and state.
 
+## Uninstall
+
+```sh
+node /path/to/claude-usage-band-cli/scripts/uninstall.mjs
+```
+
+It edits `~/.claude/settings.json` (or `$CLAUDE_CONFIG_DIR/settings.json`): takes the plugin folder out of `env.CLAUDE_CODE_PLUGIN_DIRS` (other folders stay) and deletes the saved `pluginConfigs["usage-band"]` settings. The old file is copied to `settings.json.usage-band.bak` first. Start a new session afterwards.
+
+| Flag | Does |
+| --- | --- |
+| `--dry-run` | Prints what would change, writes nothing |
+| `--purge` | Also deletes the plugin folder (run it from outside that folder) |
+| `--keep-settings` | Leaves `pluginConfigs["usage-band"]` in place, e.g. to reinstall later |
+| `--function-hooks` | Also removes `env.CLAUDE_CODE_ENABLE_FUNCTION_HOOKS`; it stays by default because other mods may need it |
+| `--dir <path>` | The folder to unregister, when it isn't the one the script lives in |
+
+If you only ever used `claude --plugin-dir`, there is nothing to uninstall: just stop passing the flag.
+
 ## Commands
 
 | Command | Does |
@@ -172,6 +190,7 @@ hooks/register.tsx           hooks, state, settings, command, terminal drawing
 hooks/pills.ts               formatting and the SVG pills (no engine calls)
 scripts/tokens.mjs           transcript totals
 scripts/sysinfo.mjs          machine memory
+scripts/uninstall.mjs        removes the plugin from the user settings
 types/index.d.ts             the $.state contract
 tests/band.test.tsx          claude plugin test suite
 ```
